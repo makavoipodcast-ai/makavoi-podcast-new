@@ -1,11 +1,54 @@
-{
-  "articles": [
-    {
-      "title": "Welcome to MA-KAVOI PODCAST",
-      "category": "Media Updates",
-      "image": "https://placehold.co/800x450/073b78/ffffff?text=MA-KAVOI+PODCAST",
-      "content": "MA-KAVOI PODCAST brings you Kenyan news, African stories, culture, interviews and community conversations.",
-      "date": "2026-11-04"
+
+<script>
+fetch('./news.json')
+.then(response => {
+  if (!response.ok) throw new Error('News unavailable');
+  return response.json();
+})
+.then(data => {
+  const container = document.getElementById('news-list');
+  container.innerHTML = '';
+
+  if (!data.articles || data.articles.length === 0) {
+    container.textContent = 'New stories coming soon.';
+    return;
+  }
+
+  data.articles.forEach(article => {
+    const card = document.createElement('div');
+    card.className = 'card';
+
+    if (article.image) {
+      const img = document.createElement('img');
+      img.src = article.image;
+      img.alt = article.title || 'News photograph';
+      img.style.width = '100%';
+      img.style.borderRadius = '8px';
+      img.style.marginBottom = '10px';
+      card.appendChild(img);
     }
-  ]
-}
+
+    const title = document.createElement('h3');
+    title.textContent = article.title || 'News article';
+    card.appendChild(title);
+
+    const category = document.createElement('p');
+    category.textContent = article.category || '';
+    card.appendChild(category);
+
+    const content = document.createElement('p');
+    content.textContent = article.content || '';
+    card.appendChild(content);
+
+    const date = document.createElement('small');
+    date.textContent = article.date || '';
+    card.appendChild(date);
+
+    container.appendChild(card);
+  });
+})
+.catch(() => {
+  document.getElementById('news-list').textContent =
+    'News is temporarily unavailable.';
+});
+</script>
