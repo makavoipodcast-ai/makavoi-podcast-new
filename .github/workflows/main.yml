@@ -1,7 +1,29 @@
+
 name: Publish MA-KAVOI News
 
 on:
   workflow_dispatch:
+    inputs:
+      title:
+        description: News headline
+        required: true
+        type: string
+      category:
+        description: News category
+        required: true
+        type: string
+      content:
+        description: Full news story
+        required: true
+        type: string
+      image:
+        description: Photograph URL (optional)
+        required: false
+        type: string
+      date:
+        description: Publication date YYYY-MM-DD (optional)
+        required: false
+        type: string
 
 permissions:
   contents: write
@@ -13,10 +35,42 @@ jobs:
       - name: Get website files
         uses: actions/checkout@v4
 
-      - name: Publish news
+      - name: Add news article
+        env:
+          TITLE: ${{ inputs.title }}
+          CATEGORY: ${{ inputs.category }}
+          CONTENT: ${{ inputs.content }}
+          IMAGE: ${{ inputs.image }}
+          ARTICLE_DATE: ${{ inputs.date }}
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          from datetime import date
+
+          path = "news.json"
+
+          with open(path, "r", encoding="utf-8") as f:
+              data = json.load(f)
+
+          article = {
+              "title": os.environ["TITLE"],
+              "category": os.environ["CATEGORY"],
+              "content": os.environ["CONTENT"],
+              "image": os.environ["IMAGE"],
+              "date": os.environ["ARTICLE_DATE"] or date.today().isoformat()
+          }
+
+          data.setdefault("articles", []).insert(0, article)
+
+          with open(path, "w", encoding="utf-8") as f:
+              json.dump(data, f, indent=2, ensure_ascii=False)
+          PY
+
+      - name: Save published news
         run: |
           git config user.name "MA-KAVOI PODCAST"
           git config user.email "Makavoipodcast@gmail.com"
           git add news.json
-          git commit -m "Publish latest MA-KAVOI news" || echo "No changes"
+          git commit -m "Publish MA-KAVOI news"
           git push
