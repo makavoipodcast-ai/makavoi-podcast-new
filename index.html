@@ -1,52 +1,184 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MA-KAVOI PODCAST | African Stories & News</title>
+<meta name="description" content="MA-KAVOI PODCAST brings you Kenyan news, African stories, culture, interviews and community conversations.">
+
+<style>
+* { box-sizing: border-box; }
 body {
-  font-family: Arial, sans-serif;
-  background: #f4f6f9;
-  color: #222;
   margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f3f5f8;
+  color: #222;
+  line-height: 1.6;
 }
-
-nav {
-  background: #063b75;
-  padding: 15px;
+header {
+  background: #073b78;
+  color: white;
   text-align: center;
+  padding: 35px 15px;
 }
-
+header h1 { margin: 0; font-size: 32px; }
+header p { margin: 8px 0; }
+nav {
+  background: #d71920;
+  padding: 12px;
+  text-align: center;
+  position: sticky;
+  top: 0;
+}
 nav a {
   color: white;
   text-decoration: none;
-  padding: 10px;
   display: inline-block;
+  padding: 8px;
   font-weight: bold;
 }
-
+.hero {
+  background: #073b78;
+  color: white;
+  text-align: center;
+  padding: 55px 20px;
+}
+.hero h2 { font-size: 30px; }
 section {
+  max-width: 950px;
+  margin: 25px auto;
   background: white;
-  margin: 15px;
-  padding: 20px;
+  padding: 25px;
   border-radius: 10px;
 }
-
-h2 {
-  color: #063b75;
-  border-bottom: 3px solid #d71920;
-  padding-bottom: 10px;
-}
-
+h2 { color: #073b78; border-bottom: 3px solid #d71920; padding-bottom: 8px; }
 .card {
-  background: #f4f6f9;
-  padding: 15px;
-  margin: 12px 0;
-  border-left: 4px solid #d71920;
-  border-radius: 6px;
+  background: #f3f5f8;
+  padding: 16px;
+  margin: 14px 0;
+  border-left: 5px solid #d71920;
+  border-radius: 5px;
 }
+.button {
+  display: inline-block;
+  background: #d71920;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  margin: 8px 4px;
+}
+footer {
+  background: #073b78;
+  color: white;
+  text-align: center;
+  padding: 25px;
+}
+footer a { color: white; }
+@media(max-width:600px) {
+  header h1 { font-size: 25px; }
+  nav a { font-size: 13px; padding: 6px; }
+  section { margin: 15px 10px; padding: 18px; }
+}
+</style>
+</head>
 
-a {
-  color: #063b75;
-}
+<body>
 
-@media (max-width: 600px) {
-  nav a {
-    padding: 8px;
-    font-size: 14px;
-  }
-}
+<header id="home">
+<h1>MA-KAVOI PODCAST</h1>
+<p>News • African Stories • Culture • Conversations</p>
+</header>
+
+<nav>
+<a href="#home">Home</a>
+<a href="#news">News</a>
+<a href="#podcast">Podcast</a>
+<a href="#culture">Culture</a>
+<a href="#gallery">Gallery</a>
+<a href="#about">About</a>
+<a href="#contact">Contact</a>
+</nav>
+
+<div class="hero">
+<h2>WELCOME TO MA-KAVOI PODCAST</h2>
+<p>Your voice. Your stories. Your Africa.</p>
+<a class="button" href="https://www.youtube.com/@MAkavoiPodcast">Watch Our Videos</a>
+</div>
+
+<section id="news">
+<h2>Latest News</h2>
+<div class="card">
+<h3>Kenya News</h3>
+<p>News, current affairs, politics, education and developments across Kenya.</p>
+</div>
+<div class="card">
+<h3>Africa News</h3>
+<p>Discover important developments from across Africa.</p>
+</div>
+<div class="card">
+<h3>Breaking News</h3>
+<p>Follow important updates and developing stories.</p>
+</div>
+</section>
+
+<section id="podcast">
+<h2>MA-KAVOI PODCAST – Watch Our Shows</h2>
+<p>News, interviews, African stories and cultural conversations.</p>
+<a class="button" href="https://www.youtube.com/@MAkavoiPodcast">Visit Our YouTube Channel</a>
+</section>
+
+<section id="culture">
+<h2>African Stories & Culture</h2>
+<div class="card">
+<h3>Kamba Heritage</h3>
+<p>Discover Kamba traditions, language, history and heritage.</p>
+</div>
+<div class="card">
+<h3>African History</h3>
+<p>Stories of African communities, leaders and cultural heritage.</p>
+</div>
+</section>
+
+<section id="gallery">
+<h2>Photo Gallery</h2>
+<p>Our collection of news photography, cultural events and community activities.</p>
+</section>
+
+<section id="about">
+<h2>About MA-KAVOI PODCAST</h2>
+<p>MA-KAVOI PODCAST is a digital media platform dedicated to news, African stories, culture, interviews and community conversations.</p>
+<h3>Our Mission</h3>
+<p>To inform, educate, entertain and preserve African heritage through digital media.</p>
+<h3>Our Vision</h3>
+<p>To become a trusted voice for African stories, culture and information.</p>
+</section>
+
+<section id="advertise">
+<h2>Advertise With Us</h2>
+<p>Promote your business, brand, products and events through MA-KAVOI PODCAST.</p>
+<a class="button" href="https://wa.me/254741139063">Advertise With Us</a>
+</section>
+
+<section id="contact">
+<h2>Contact MA-KAVOI PODCAST</h2>
+<p>Have news, stories, advertising enquiries or partnership opportunities?</p>
+<p>WhatsApp: 0741139063</p>
+<p>Email: Makavoipodcast@gmail.com</p>
+<a class="button" href="https://wa.me/254741139063">Chat on WhatsApp</a>
+<a class="button" href="mailto:Makavoipodcast@gmail.com">Send Email</a>
+</section>
+
+<footer>
+<h3>MA-KAVOI PODCAST</h3>
+<p>Your voice. Your stories. Your Africa.</p>
+<p>
+<a href="https://www.facebook.com/Makavoipodcast">Facebook</a> |
+<a href="https://www.youtube.com/@MAkavoiPodcast">YouTube</a>
+</p>
+<p>© 2026 MA-KAVOI PODCAST. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>
