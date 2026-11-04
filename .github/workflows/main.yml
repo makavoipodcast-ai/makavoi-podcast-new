@@ -1,0 +1,22 @@
+name: Publish MA-KAVOI News
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get website files
+        uses: actions/checkout@v4
+
+      - name: Publish news
+        run: |
+          git config user.name "MA-KAVOI PODCAST"
+          git config user.email "Makavoipodcast@gmail.com"
+          git add news.json
+          git commit -m "Publish latest MA-KAVOI news" || echo "No changes"
+          git push
