@@ -1,10 +1,171 @@
-if (article.image) {
-  const img = document.createElement('img');
-  img.src = article.image;
-  img.alt = article.title || 'News photograph';
-  img.style.width = '100%';
-  img.style.borderRadius = '8px';
-  card.appendChild(img);
-}</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MA-KAVOI PODCAST | News, Culture & Stories</title>
+<meta name="description" content="MA-KAVOI PODCAST brings you Kenyan news, African stories, interviews and culture.">
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f4f6fa;color:#222;line-height:1.6}
+header{background:#073b78;color:white;text-align:center;padding:30px 15px;border-bottom:6px solid #d92332}
+header h1{margin:0;font-size:30px}
+header p{margin:5px 0}
+nav{background:#d92332;padding:12px;text-align:center}
+nav a{color:white;text-decoration:none;margin:7px;font-weight:bold;display:inline-block}
+.hero{background:#073b78;color:white;text-align:center;padding:55px 18px}
+.hero h2{font-size:30px}
+.btn{display:inline-block;background:#d92332;color:white;padding:11px 18px;text-decoration:none;border-radius:5px;margin:5px}
+section{padding:30px 16px;max-width:1000px;margin:auto}
+section h2{color:#073b78;border-bottom:3px solid #d92332;padding-bottom:8px}
+.card{background:white;padding:16px;margin:15px 0;border-radius:8px;box-shadow:0 2px 8px #0001}
+.card img{width:100%;height:auto;max-height:400px;object-fit:cover;border-radius:7px}
+small{color:#666}
+footer{background:#073b78;color:white;text-align:center;padding:25px}
+footer a{color:white}
+</style>
+</head>
+<body>
+
+<header id="home">
+<h1>MA-KAVOI PODCAST</h1>
+<p>Your Voice. Your Stories. Your Africa.</p>
+</header>
+
+<nav>
+<a href="#home">Home</a>
+<a href="#news">News</a>
+<a href="#podcast">Podcast</a>
+<a href="#culture">Culture</a>
+<a href="#gallery">Gallery</a>
+<a href="#about">About</a>
+<a href="#contact">Contact</a>
+</nav>
+
+<div class="hero">
+<h2>WELCOME TO MA-KAVOI PODCAST</h2>
+<p>Your home for Kenyan news, African stories, interviews and cultural conversations.</p>
+<a class="btn" href="#news">Read Latest News</a>
+<a class="btn" href="https://www.youtube.com/@MAkavoiPodcast" target="_blank">Watch YouTube</a>
+</div>
+
+<section id="news">
+<h2>📰 LATEST NEWS</h2>
+<div id="news-list">
+<p>Loading latest news...</p>
+</div>
+</section>
+
+<section id="podcast">
+<h2>🎙️ OUR PODCAST</h2>
+<div class="card">
+<p>Watch our programmes, interviews, discussions and African stories.</p>
+<a class="btn" href="https://www.youtube.com/@MAkavoiPodcast" target="_blank">Visit Our YouTube Channel</a>
+</div>
+</section>
+
+<section id="culture">
+<h2>🌍 AFRICAN STORIES & CULTURE</h2>
+<div class="card">
+<p>Discover African heritage, Kamba traditions, history, languages, community stories and the people shaping our continent.</p>
+</div>
+</section>
+
+<section id="gallery">
+<h2>📸 PHOTO GALLERY</h2>
+<div class="card">
+<p>Our photographs and event highlights will be published here. Visit our social media pages for more updates.</p>
+<a class="btn" href="https://www.facebook.com/Makavoipodcast" target="_blank">View Facebook Photos</a>
+</div>
+</section>
+
+<section id="about">
+<h2>ABOUT MA-KAVOI PODCAST</h2>
+<div class="card">
+<p>MA-KAVOI PODCAST is a digital media platform sharing news, interviews, African stories, culture and community conversations.</p>
+<p>We give stories a voice and connect communities through digital media.</p>
+</div>
+</section>
+
+<section id="advertise">
+<h2>📢 ADVERTISE WITH US</h2>
+<div class="card">
+<p>Promote your business, products, events and services through MA-KAVOI PODCAST.</p>
+<a class="btn" href="https://wa.me/254741139063?text=Hello%20MA-KAVOI%20PODCAST%2C%20I%20would%20like%20to%20advertise.">Advertise With Us</a>
+</div>
+</section>
+
+<section id="contact">
+<h2>📞 CONTACT US</h2>
+<div class="card">
+<p><strong>WhatsApp:</strong> 0741139063</p>
+<p><strong>Email:</strong> Makavoipodcast@gmail.com</p>
+<a class="btn" href="https://wa.me/254741139063">Chat on WhatsApp</a>
+<a class="btn" href="mailto:Makavoipodcast@gmail.com">Send Email</a>
+</div>
+<div class="card">
+<p>Follow MA-KAVOI PODCAST:</p>
+<a class="btn" href="https://www.facebook.com/Makavoipodcast" target="_blank">Facebook</a>
+<a class="btn" href="https://www.youtube.com/@MAkavoiPodcast" target="_blank">YouTube</a>
+</div>
+</section>
+
+<footer>
+<p><strong>MA-KAVOI PODCAST</strong></p>
+<p>Your Voice. Your Stories. Your Africa.</p>
+<p>© 2026 MA-KAVOI PODCAST. All Rights Reserved.</p>
+</footer>
+
+<script>
+fetch('./news.json')
+.then(response => {
+  if (!response.ok) throw new Error('News unavailable');
+  return response.json();
+})
+.then(data => {
+  const container = document.getElementById('news-list');
+  container.innerHTML = '';
+
+  if (!data.articles || data.articles.length === 0) {
+    container.textContent = 'New stories coming soon.';
+    return;
+  }
+
+  data.articles.forEach(article => {
+    const card = document.createElement('div');
+    card.className = 'card';
+
+    if (article.image) {
+      const img = document.createElement('img');
+      img.src = article.image;
+      img.alt = article.title || 'News photograph';
+      card.appendChild(img);
+    }
+
+    const title = document.createElement('h3');
+    title.textContent = article.title || 'News article';
+    card.appendChild(title);
+
+    const category = document.createElement('p');
+    category.textContent = article.category || '';
+    card.appendChild(category);
+
+    const content = document.createElement('p');
+    content.textContent = article.content || '';
+    card.appendChild(content);
+
+    const date = document.createElement('small');
+    date.textContent = article.date || '';
+    card.appendChild(date);
+
+    container.appendChild(card);
+  });
+})
+.catch(() => {
+  document.getElementById('news-list').textContent =
+    'News is temporarily unavailable.';
+});
+</script>
+
 </body>
 </html>
