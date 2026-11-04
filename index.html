@@ -1,94 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MA-KAVOI Admin Dashboard</title>
-<style>
-body {
-  font-family: Arial, sans-serif;
-  background: #f1f4f8;
-  margin: 0;
-  color: #222;
-}
-header {
-  background: #073b78;
-  color: white;
-  padding: 22px;
-  text-align: center;
-}
-main {
-  max-width: 700px;
-  margin: 25px auto;
-  padding: 20px;
-  background: white;
-  border-radius: 10px;
-}
-input, textarea, select {
-  width: 100%;
-  padding: 12px;
-  margin: 8px 0 16px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-sizing: border-box;
-}
-textarea { min-height: 160px; }
-button {
-  background: #d71920;
-  color: white;
-  border: 0;
-  padding: 13px 20px;
-  border-radius: 5px;
-  font-weight: bold;
-}
-.notice {
-  background: #fff3cd;
-  padding: 12px;
-  border-radius: 5px;
-  margin-bottom: 20px;
-}
-</style>
-</head>
-<body>
+<section id="news">
+<h2>📰 LATEST NEWS</h2>
+<p>Latest stories from Kenya and Africa.</p>
 
-<header>
-<h1>MA-KAVOI PODCAST</h1>
-<p>News Admin Dashboard</p>
-</header>
-
-<main>
-<h2>Welcome, makavoiadmin</h2>
-
-<div class="notice">
-<strong>Admin access:</strong>
-This is the news editor interface. Articles must be published through your authorised GitHub account.
+<div id="news-list">
+<p>Loading latest news...</p>
 </div>
+</section>
 
-<h2>Create News Article</h2>
+<script>
+fetch('./news.json')
+.then(response => response.json())
+.then(data => {
+  const container = document.getElementById('news-list');
 
-<label>News headline</label>
-<input type="text" placeholder="Enter news headline">
+  if (!data.articles || data.articles.length === 0) {
+    container.innerHTML = '<p>New stories coming soon.</p>';
+    return;
+  }
 
-<label>News category</label>
-<select>
-<option>Kenya News</option>
-<option>Africa News</option>
-<option>Breaking News</option>
-<option>Culture & Heritage</option>
-</select>
-
-<label>Article photograph URL</label>
-<input type="url" placeholder="Image URL (optional)">
-
-<label>News story</label>
-<textarea placeholder="Write your news story here..."></textarea>
-
-<button type="button" onclick="alert('This is a preview only. Publishing will be connected to GitHub in the next step.')">
-Preview Publishing
-</button>
-
-<p><a href="index.html">← Return to MA-KAVOI website</a></p>
-</main>
-
-</body>
-</html>
+  container.innerHTML = data.articles.map(article => `
+    <div class="card">
+      <h3>${article.title}</h3>
+      <p>${article.category}</p>
+      <p>${article.content}</p>
+    </div>
+  `).join('');
+})
+.catch(() => {
+  document.getElementById('news-list').innerHTML =
+    '<p>News is temporarily unavailable.</p>';
+});
+</script>
