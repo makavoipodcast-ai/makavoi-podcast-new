@@ -1,33 +1,8 @@
-<section id="news">
-<h2>📰 LATEST NEWS</h2>
-<p>Latest stories from Kenya and Africa.</p>
-
-<div id="news-list">
-<p>Loading latest news...</p>
-</div>
-</section>
-
-<script>
-fetch('./news.json')
-.then(response => response.json())
-.then(data => {
-  const container = document.getElementById('news-list');
-
-  if (!data.articles || data.articles.length === 0) {
-    container.innerHTML = '<p>New stories coming soon.</p>';
-    return;
-  }
-
-  container.innerHTML = data.articles.map(article => `
-    <div class="card">
-      <h3>${article.title}</h3>
-      <p>${article.category}</p>
-      <p>${article.content}</p>
-    </div>
-  `).join('');
-})
-.catch(() => {
-  document.getElementById('news-list').innerHTML =
-    '<p>News is temporarily unavailable.</p>';
-});
-</script>
+if (article.image) {
+  const img = document.createElement('img');
+  img.src = article.image;
+  img.alt = article.title || 'News photograph';
+  img.style.width = '100%';
+  img.style.borderRadius = '8px';
+  card.appendChild(img);
+}
