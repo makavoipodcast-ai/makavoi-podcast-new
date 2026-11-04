@@ -3,7 +3,9 @@
     {
       "title": "Welcome to MA-KAVOI PODCAST",
       "category": "Media Updates",
-      "content": "MA-KAVOI PODCAST brings you Kenyan news, African stories, culture, interviews and community conversations."
+      "image": "https://placehold.co/800x450/073b78/ffffff?text=MA-KAVOI+PODCAST",
+      "content": "MA-KAVOI PODCAST brings you Kenyan news, African stories, culture, interviews and community conversations.",
+      "date": "2026-11-04"
     }
   ]
 }
