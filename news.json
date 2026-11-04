@@ -1,3 +1,9 @@
 {
-  "articles": []
+  "articles": [
+    {
+      "title": "Welcome to MA-KAVOI PODCAST",
+      "category": "Media Updates",
+      "content": "MA-KAVOI PODCAST brings you Kenyan news, African stories, culture, interviews and community conversations."
+    }
+  ]
 }
