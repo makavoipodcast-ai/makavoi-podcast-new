@@ -1,169 +1,35 @@
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>MA-KAVOI | Admin Dashboard</title>
 <style>
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial;background:#f2f5fa;color:#172033}
-header{background:#092b58;color:white;padding:25px;text-align:center}
-nav{background:#c62828;padding:13px;text-align:center}
-nav a{color:white;text-decoration:none;font-weight:bold}
-main{max-width:850px;margin:25px auto;padding:15px}
-section{background:white;padding:22px;margin-bottom:22px;border-radius:10px;box-shadow:0 3px 12px #0000000d}
-h2,h3{color:#092b58}
-label{display:block;font-weight:bold;margin-top:15px}
-input,textarea,select{width:100%;padding:12px;margin-top:7px;border:1px solid #ccc;border-radius:6px;font-size:15px}
-textarea{height:140px}
-button{background:#c62828;color:white;border:0;padding:14px;border-radius:6px;width:100%;font-size:16px;font-weight:bold;margin-top:18px}
-button:hover{background:#a51e24}
-.message{font-weight:bold;color:#14733d}
-.note{color:#687386;font-size:13px}
-footer{text-align:center;background:#061b38;color:white;padding:20px}
+/* MA-KAVOI Admin Dashboard Improvements */
+body {
+  background: #f1f5f9;
+}
+header {
+  background: #102b50;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+}
+input, textarea, select, button {
+  border-radius: 7px;
+  padding: 12px;
+  max-width: 100%;
+}
+button {
+  background: #c62828;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+button:hover {
+  background: #a51f1f;
+}
+section, .card {
+  background: white;
+  padding: 18px;
+  margin: 15px 0;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px #00000012;
+}
 </style>
-</head>
-<body>
-
-<header>
-<h1>MA-KAVOI PODCAST</h1>
-<p>ADMIN DASHBOARD</p>
-<p>Manage News & Podcast Episodes</p>
-</header>
-
-<nav>
-<a href="index.html">← Back to Website</a>
-</nav>
-
-<main>
-
-<section>
-<h2>Publish a News Article</h2>
-
-<label>Article Title</label>
-<input id="title" placeholder="Enter article title">
-
-<label>Category</label>
-<select id="category">
-<option>News</option>
-<option>Culture</option>
-<option>Community</option>
-<option>African Stories</option>
-</select>
-
-<label>Article Content</label>
-<textarea id="content" placeholder="Write your news article"></textarea>
-
-<button onclick="downloadArticle()">Prepare News Article</button>
-<p id="articleMessage" class="message"></p>
-</section>
-
-<section>
-<h2>Prepare Podcast Episode</h2>
-
-<label>Episode Title</label>
-<input id="episodeTitle" placeholder="Enter episode title">
-
-<label>Episode Description</label>
-<textarea id="episodeDescription" placeholder="Describe the episode"></textarea>
-
-<label>Audio Link</label>
-<input id="audioLink" type="url" placeholder="Paste a public audio URL">
-
-<button onclick="downloadPodcast()">Prepare Podcast Episode</button>
-<p id="podcastMessage" class="message"></p>
-</section>
-
-<section>
-<h3>Publishing Instructions</h3>
-<p>1. Prepare your article or episode file.</p>
-<p>2. Download the JSON file to your device.</p>
-<p>3. Upload the file into the correct GitHub folder.</p>
-<p>4. Add its filename to the relevant index.json file.</p>
-<p class="note">This dashboard prepares content files. It does not publish automatically.</p>
-</section>
-
-</main>
-
-<footer>
-<strong>MA-KAVOI PODCAST</strong>
-<p>OUR CULTURE. OUR STORIES.</p>
-<p>© 2026 MA-KAVOI PODCAST</p>
-</footer>
-
-<script>
-function saveJSON(data,filename){
-const blob=new Blob(
-[JSON.stringify(data,null,2)],
-{type:"application/json"}
-);
-const url=URL.createObjectURL(blob);
-const link=document.createElement("a");
-link.href=url;
-link.download=filename;
-link.click();
-setTimeout(()=>URL.revokeObjectURL(url),1000);
-}
-
-function slug(text){
-return text.toLowerCase()
-.trim()
-.replace(/[^a-z0-9]+/g,"-")
-.replace(/^-|-$/g,"");
-}
-
-function downloadArticle(){
-const title=document.getElementById("title").value.trim();
-const content=document.getElementById("content").value.trim();
-const category=document.getElementById("category").value;
-const message=document.getElementById("articleMessage");
-
-if(!title||!content){
-message.textContent="Please enter the title and article content.";
-return;
-}
-
-const filename="article-"+slug(title)+".json";
-
-saveJSON({
-title:title,
-date:new Date().toISOString().slice(0,10),
-category:category,
-content:content
-},filename);
-
-message.textContent="Article file prepared: "+filename;
-}
-
-function downloadPodcast(){
-const title=document.getElementById("episodeTitle").value.trim();
-const description=document.getElementById("episodeDescription").value.trim();
-const audio=document.getElementById("audioLink").value.trim();
-const message=document.getElementById("podcastMessage");
-
-if(!title||!audio){
-message.textContent="Please enter an episode title and audio link.";
-return;
-}
-
-if(!/^https?:\/\//i.test(audio)){
-message.textContent="Please enter a valid public audio URL.";
-return;
-}
-
-const filename="episode-"+slug(title)+".json";
-
-saveJSON({
-title:title,
-description:description,
-audio:audio,
-date:new Date().toISOString().slice(0,10)
-},filename);
-
-message.textContent="Podcast file prepared: "+filename;
-}
-</script>
-
-</body>
-</html>
