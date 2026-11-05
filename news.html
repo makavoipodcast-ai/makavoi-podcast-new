@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +8,7 @@
 <style>
 body{margin:0;font-family:Arial;background:#f4f6fa;color:#172033}
 header{background:#102b55;color:white;padding:25px;text-align:center}
-nav{background:#c62828;padding:12px;text-align:center}
+nav{background:#c62828;padding:15px;text-align:center}
 nav a{color:white;margin:10px;text-decoration:none;font-weight:bold}
 main{max-width:850px;margin:25px auto;padding:15px}
 article{background:white;padding:20px;margin-bottom:18px;border-radius:9px}
@@ -20,37 +21,57 @@ footer{background:#102b55;color:white;text-align:center;padding:20px}
 <h1>MA-KAVOI PODCAST</h1>
 <p>OUR CULTURE. OUR STORIES.</p>
 </header>
+
 <nav>
-<a href="index.html">Home</a>
-<a href="news.html">News</a>
-<a href="admin.html">Admin</a>
+<a href="index.html">HOME</a>
+<a href="news.html">NEWS</a>
+<a href="admin.html">ADMIN</a>
 </nav>
+
 <main>
 <h2>Latest News & Stories</h2>
-<div id="articles">Loading articles...</div>
+<div id="articles">Loading stories...</div>
 </main>
+
 <footer>
 <p>© 2026 MA-KAVOI PODCAST</p>
 </footer>
+
 <script>
 async function loadArticles(){
 const box=document.getElementById("articles");
 try{
-const response=await fetch("articles/welcome.json");
-if(!response.ok) throw new Error("No articles found");
-const article=await response.json();
+const response=await fetch("articles/index.json");
+if(!response.ok) throw new Error("Archive unavailable");
+const files=await response.json();
 box.innerHTML="";
+
+for(const file of files){
+const result=await fetch("articles/"+file);
+if(!result.ok) continue;
+
+const article=await result.json();
 const item=document.createElement("article");
+
 const title=document.createElement("h2");
 title.textContent=article.title;
+
 const date=document.createElement("small");
-date.textContent=article.date+" | "+article.category;
+date.textContent=(article.date||"")+
+" | "+(article.category||"");
+
 const content=document.createElement("p");
 content.textContent=article.content;
+
 item.append(title,date,content);
 box.appendChild(item);
+}
+
+if(!box.children.length){
+box.textContent="No stories published yet.";
+}
 }catch(error){
-box.textContent="Our stories are coming soon. Please check again.";
+box.textContent="Stories are temporarily unavailable. Please try again.";
 }
 }
 loadArticles();
