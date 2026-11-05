@@ -1,55 +1,69 @@
-<style>
-/* MA-KAVOI Admin Dashboard Improvements */
-body {
-  background: #f1f5f9;
-}
-header {
-  background: #102b50;
-  color: white;
-  padding: 20px;
-  border-radius: 10px;
-}
-input, textarea, select, button {
-  border-radius: 7px;
-  padding: 12px;
-  max-width: 100%;
-}
-button {
-  background: #c62828;
-  color: white;
-  border: none;
-  cursor: pointer;
-  font-weight: bold;
-}
-button:hover {
-  background: #a51f1f;
-}
-section, .card {
-  background: white;
-  padding: 18px;
-  margin: 15px 0;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px #00000012;
-}
-</style><section>
-  <h2>MA-KAVOI Publishing Guide</h2>
-  <h3>News Publishing</h3>
-  <ol>
-    <li>Create your article as a JSON file inside the articles folder.</li>
-    <li>Add its filename to articles/index.json.</li>
-    <li>Commit your changes on GitHub.</li>
-    <li>Visit the News page to confirm publication.</li>
-  </ol>
 
-  <h3>Podcast Publishing</h3>
-  <ol>
-    <li>Upload your audio to a public audio hosting service.</li>
-    <li>Create an episode JSON file inside the podcasts folder.</li>
-    <li>Add its filename to podcasts/index.json.</li>
-    <li>Commit your changes and test the Podcast page.</li>
-  </ol>
-</section><nav>
-  <a href="index.html">HOME</a>
-  <a href="news.html">NEWS</a>
-  <a href="admin.html">ADMIN</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MA-KAVOI Admin Dashboard</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f1f5f9;font-family:Arial;color:#172033;line-height:1.6}
+header{background:#102b50;color:white;padding:25px}
+nav{background:#c62828;padding:13px}
+nav a{color:white;text-decoration:none;margin:12px;font-weight:bold}
+main{max-width:1000px;margin:25px auto;padding:15px}
+.card{background:white;padding:22px;margin:18px 0;border-radius:12px;box-shadow:0 2px 8px #0001}
+h2{color:#102b50}
+h3{color:#c62828}
+.btn{display:inline-block;background:#c62828;color:white;text-decoration:none;padding:11px 15px;border-radius:7px;margin:5px}
+.blue{background:#102b50}
+footer{text-align:center;padding:20px;color:#64748b}
+</style>
+</head>
+<body>
+<header>
+<h1>MA-KAVOI PODCAST</h1>
+<p>ADMIN PUBLISHING DASHBOARD</p>
+<p>Our Culture. Our Stories.</p>
+</header>
+<nav>
+<a href="index.html">HOME</a>
+<a href="news.html">NEWS</a>
+<a href="podcast.html">PODCAST</a>
 </nav>
+<main>
+<div class="card">
+<h2>Welcome, Administrator</h2>
+<p>Manage your news, African stories and podcast episodes.</p>
+</div>
+<div class="card">
+<h2>NEWS MANAGEMENT</h2>
+<p>Create and manage published articles.</p>
+<a class="btn" href="https://github.com/makavoipodcast-ai/makavoi-podcast-new/new/main/articles">Create News</a>
+<a class="btn blue" href="https://github.com/makavoipodcast-ai/makavoi-podcast-new/tree/main/articles">View Articles</a>
+<a class="btn blue" href="https://github.com/makavoipodcast-ai/makavoi-podcast-new/edit/main/articles/index.json">Manage News List</a>
+</div>
+<div class="card">
+<h2>PODCAST MANAGEMENT</h2>
+<p>Add and manage audio episodes.</p>
+<a class="btn" href="https://github.com/makavoipodcast-ai/makavoi-podcast-new/new/main/podcasts">Add Episode</a>
+<a class="btn blue" href="https://github.com/makavoipodcast-ai/makavoi-podcast-new/tree/main/podcasts">View Episodes</a>
+<a class="btn blue" href="https://github.com/makavoipodcast-ai/makavoi-podcast-new/edit/main/podcasts/index.json">Manage Episode List</a>
+</div>
+<div class="card">
+<h2>Publishing Instructions</h2>
+<ol>
+<li>Create your news or podcast JSON file.</li>
+<li>Add its filename to the correct index.json.</li>
+<li>Commit your changes on GitHub.</li>
+<li>Check your website to confirm publication.</li>
+</ol>
+</div>
+<div class="card">
+<h3>Security</h3>
+<p>Publishing requires an authorized GitHub account. This static dashboard does not provide a secure password login.</p>
+</div>
+</main>
+<footer>© 2026 MA-KAVOI PODCAST</footer>
+</body>
+</html>
