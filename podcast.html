@@ -1,1 +1,77 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MA-KAVOI PODCAST | Episodes</title>
+<style>
+body{margin:0;font-family:Arial;background:#f2f5fa;color:#172033}
+header{background:#102b55;color:white;text-align:center;padding:25px}
+nav{background:#c62828;padding:15px;text-align:center}
+nav a{color:white;margin:10px;text-decoration:none;font-weight:bold}
+main{max-width:850px;margin:25px auto;padding:15px}
+.episode{background:white;padding:20px;margin-bottom:20px;border-radius:10px}
+audio{width:100%;margin-top:12px}
+footer{background:#102b55;color:white;text-align:center;padding:20px}
+</style>
+</head>
+<body>
+
+<header>
+<h1>MA-KAVOI PODCAST</h1>
+<p>OUR CULTURE. OUR STORIES.</p>
+</header>
+
+<nav>
+<a href="index.html">HOME</a>
+<a href="news.html">NEWS</a>
+<a href="podcast.html">PODCAST</a>
+</nav>
+
+<main>
+<h2>Our Podcast Episodes</h2>
+<div id="episodes">Loading episodes...</div>
+</main>
+
+<footer>© 2026 MA-KAVOI PODCAST</footer>
+
+<script>
+async function loadEpisodes(){
+const box=document.getElementById("episodes");
+try{
+const response=await fetch("podcasts/index.json");
+if(!response.ok) throw new Error();
+const files=await response.json();
+box.innerHTML="";
+for(const file of files){
+const result=await fetch("podcasts/"+file);
+if(!result.ok) continue;
+const episode=await result.json();
+
+const item=document.createElement("div");
+item.className="episode";
+
+const title=document.createElement("h3");
+title.textContent=episode.title;
+
+const description=document.createElement("p");
+description.textContent=episode.description||"";
+
+const player=document.createElement("audio");
+player.controls=true;
+player.src=episode.audio;
+
+item.append(title,description,player);
+box.appendChild(item);
+}
+if(!box.children.length) box.textContent="No podcast episodes published yet.";
+}catch(error){
+box.textContent="Podcast episodes are temporarily unavailable.";
+}
+}
+loadEpisodes();
+</script>
+
+</body>
+</html>
