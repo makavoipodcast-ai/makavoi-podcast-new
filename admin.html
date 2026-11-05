@@ -1,163 +1,74 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MA-KAVOI PODCAST Admin</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MA-KAVOI Admin Dashboard</title>
 <style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #101820;
-  color: white;
-  text-align: center;
-}
-header {
-  background: #123b68;
-  padding: 25px;
-}
-main { padding: 20px; }
-.card {
-  background: #202d38;
-  margin: 15px auto;
-  padding: 20px;
-  border-radius: 10px;
-  max-width: 450px;
-}
-a {
-  display: block;
-  background: #1769aa;
-  color: white;
-  padding: 14px;
-  margin-top: 12px;
-  text-decoration: none;
-  border-radius: 6px;
-}
+body{font-family:Arial;background:#f2f5fa;margin:0;padding:20px;color:#172033}
+header{background:#102b55;color:white;padding:20px;border-radius:10px}
+input,textarea,select{width:100%;padding:12px;margin:8px 0 15px;box-sizing:border-box;border:1px solid #ccc;border-radius:6px}
+textarea{height:180px}
+button{background:#c62828;color:white;padding:14px;border:0;border-radius:6px;width:100%;font-size:16px}
+small{color:#555}
 </style>
 </head>
 <body>
-
 <header>
-<h1>MA-KAVOI PODCAST</h1>
-<p>ADMIN DASHBOARD</p>
+<h2>MA-KAVOI PODCAST</h2>
+<p>Admin Dashboard – Article Publisher</p>
 </header>
 
-<main>
-<div class="card">
-<h2>Manage Website</h2>
-<a href="https://github.com/makavoipodcast-ai/makavoi-podcast-new/edit/main/index.html">
-Edit Website
-</a>
-<a href="https://github.com/makavoipodcast-ai/makavoi-podcast-new/new/main">
-Add New Page
-</a>
-</div>
+<h3>Create a News Article</h3>
 
-<div class="card">
-<h2>Our Media</h2>
-<a href="https://www.youtube.com/@MAkavoiPodcast">
-Manage YouTube Channel
-</a>
-<a href="https://www.facebook.com/Makavoipodcast">
-Open Facebook Page
-</a>
-</div>
+<label>Article title</label>
+<input id="title" placeholder="Enter article title">
 
-<div class="card">
-<h2>Contact</h2>
-<a href="https://wa.me/254741139063">
-WhatsApp Contact
-</a>
-</div>
-</main>
+<label>Category</label>
+<select id="category">
+<option>News</option>
+<option>Culture</option>
+<option>Podcast</option>
+<option>Community</option>
+</select>
 
+<label>Article content</label>
+<textarea id="content" placeholder="Write your article here..."></textarea>
+
+<button onclick="downloadArticle()">Prepare Article File</button>
+
+<p id="message"></p>
+<small>This dashboard prepares an article JSON file for uploading to the GitHub articles folder. It does not publish directly from this page.</small>
+
+<script>
+function downloadArticle(){
+const title=document.getElementById("title").value.trim();
+const content=document.getElementById("content").value.trim();
+const category=document.getElementById("category").value;
+
+if(!title || !content){
+document.getElementById("message").textContent="Please enter a title and article content.";
+return;
+}
+
+const article={
+title:title,
+date:new Date().toISOString().slice(0,10),
+category:category,
+content:content
+};
+
+const file=new Blob([JSON.stringify(article,null,2)],{type:"application/json"});
+const url=URL.createObjectURL(file);
+const link=document.createElement("a");
+link.href=url;
+link.download="article-"+Date.now()+".json";
+link.click();
+URL.revokeObjectURL(url);
+
+document.getElementById("message").textContent="Article file prepared. Upload it to the GitHub articles folder to publish.";
+}
+</script>
 </body>
-</html><a href="https://github.com/makavoipodcast-ai/makavoi-podcast-new/new/main">
-Add New Page
-</a><a<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MA-KAVOI PODCAST Admin</title>
-
-<style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #101827;
-  color: white;
-}
-header {
-  background: #b91c1c;
-  padding: 20px;
-  text-align: center;
-}
-.container {
-  padding: 20px;
-}
-.card {
-  background: #1e293b;
-  padding: 20px;
-  margin-bottom: 15px;
-  border-radius: 10px;
-}
-button {
-  background: #b91c1c;
-  color: white;
-  border: none;
-  padding: 12px 20px;
-  border-radius: 5px;
-}
-input, textarea {
-  width: 100%;
-  padding: 12px;
-  margin: 10px 0;
-  box-sizing: border-box;
-}
-</style>
-</head>
-
-<body>
-
-<header>
-<h1>MA-KAVOI PODCAST</h1>
-<p>Admin Dashboard</p>
-</header>
-
-<div class="container">
-
-<div class="card">
-<h2>Welcome Admin</h2>
-<p>Manage your podcast website here.</p>
-</div>
-
-<div class="card">
-<h2>Add New Programme</h2>
-<input type="text" placeholder="Programme title">
-<textarea placeholder="Programme description"></textarea>
-<input type="url" placeholder="YouTube video link">
-<button type="button">Add Programme</button>
-</div>
-
-<div class="card">
-<h2>Website Management</h2>
-<p>Manage news, interviews and cultural stories.</p>
-</div>
-
-</div>
-
-</body>
-</html> href="https://github.com/makavoipodcast-ai/makavoi-podcast-new/new/main">
-Add New Page
-</a>
-
-<a href="https://github.com/makavoipodcast-ai/makavoi-podcast-new/edit/main/index.html">
-Add Podcast Episode
-</a><a href="https://github.com/makavoipodcast-ai/makavoi-podcast-new/edit/main/index.html">
-Publish News & African Stories
-</a><a href="https://github.com/makavoipodcast-ai/makavoi-podcast-new/edit/main/index.html">
-Manage Kamba Culture & African Heritage
-</a><a href="https://github.com/makavoipodcast-ai/makavoi-podcast-new/edit/main/index.html">
-Manage Advertisements & Sponsors
-</a>
+</html>
