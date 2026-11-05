@@ -1,22 +1,26 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>MA-KAVOI PODCAST | News</title>
+<title>Latest News | MA-KAVOI PODCAST</title>
 <style>
-body{margin:0;font-family:Arial;background:#f4f6fa;color:#172033}
-header{background:#102b55;color:white;padding:25px;text-align:center}
-nav{background:#c62828;padding:15px;text-align:center}
-nav a{color:white;margin:10px;text-decoration:none;font-weight:bold}
-main{max-width:850px;margin:25px auto;padding:15px}
-article{background:white;padding:20px;margin-bottom:18px;border-radius:9px}
-h2{color:#102b55}
-footer{background:#102b55;color:white;text-align:center;padding:20px}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f5f7fb;color:#172033;line-height:1.6}
+header{background:#092b58;color:white;padding:25px;text-align:center}
+header h1{margin:0}
+nav{background:#c62828;padding:14px;text-align:center}
+nav a{color:white;text-decoration:none;margin:0 10px;font-weight:bold}
+main{max-width:1050px;margin:35px auto;padding:0 18px}
+h2{color:#092b58}
+.story{background:white;padding:22px;margin:20px 0;border-radius:10px;box-shadow:0 3px 12px #0000000d}
+.story h3{color:#092b58;margin-top:0}
+.date{font-size:13px;color:#777}
+footer{background:#061b38;color:white;text-align:center;padding:22px;margin-top:50px}
 </style>
 </head>
 <body>
+
 <header>
 <h1>MA-KAVOI PODCAST</h1>
 <p>OUR CULTURE. OUR STORIES.</p>
@@ -25,56 +29,64 @@ footer{background:#102b55;color:white;text-align:center;padding:20px}
 <nav>
 <a href="index.html">HOME</a>
 <a href="news.html">NEWS</a>
-<a href="admin.html">ADMIN</a>
+<a href="podcast.html">PODCAST</a>
+<a href="index.html#culture">CULTURE</a>
+<a href="index.html#about">ABOUT</a>
+<a href="index.html#contact">CONTACT</a>
 </nav>
 
 <main>
 <h2>Latest News & Stories</h2>
-<div id="articles">Loading stories...</div>
+<p>Discover community news, African stories, culture and current affairs.</p>
+
+<div id="stories">Loading latest stories...</div>
 </main>
 
 <footer>
-<p>© 2026 MA-KAVOI PODCAST</p>
+<strong>MA-KAVOI PODCAST</strong>
+<p>OUR CULTURE. OUR STORIES.</p>
+<p>© 2026 MA-KAVOI PODCAST. All Rights Reserved.</p>
 </footer>
 
 <script>
-async function loadArticles(){
-const box=document.getElementById("articles");
+async function loadStories(){
+const box=document.getElementById("stories");
 try{
 const response=await fetch("articles/index.json");
-if(!response.ok) throw new Error("Archive unavailable");
+if(!response.ok)throw new Error("Stories unavailable");
 const files=await response.json();
 box.innerHTML="";
 
 for(const file of files){
 const result=await fetch("articles/"+file);
-if(!result.ok) continue;
-
+if(!result.ok)continue;
 const article=await result.json();
-const item=document.createElement("article");
 
-const title=document.createElement("h2");
-title.textContent=article.title;
+const story=document.createElement("article");
+story.className="story";
 
-const date=document.createElement("small");
-date.textContent=(article.date||"")+
-" | "+(article.category||"");
+const title=document.createElement("h3");
+title.textContent=article.title||"Untitled story";
+
+const date=document.createElement("p");
+date.className="date";
+date.textContent=(article.category||"News")+" | "+(article.date||"");
 
 const content=document.createElement("p");
-content.textContent=article.content;
+content.textContent=article.content||"";
 
-item.append(title,date,content);
-box.appendChild(item);
+story.append(title,date,content);
+box.appendChild(story);
 }
 
 if(!box.children.length){
-box.textContent="No stories published yet.";
+box.textContent="No stories published yet. Check back soon.";
 }
 }catch(error){
 box.textContent="Stories are temporarily unavailable. Please try again.";
 }
 }
-loadArticles();
+loadStories();
 </script>
 </body>
 </html>
