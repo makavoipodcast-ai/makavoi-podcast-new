@@ -1,25 +1,65 @@
 
-<p><a href="index.html" style="color:#c62828;font-weight:bold;">← Back to MA-KAVOI Website</a></p><!DOCTYPE html>
+  
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>MA-KAVOI Admin Dashboard</title>
+
 <style>
-body{font-family:Arial;background:#f2f5fa;margin:0;padding:20px;color:#172033}
-header{background:#102b55;color:white;padding:20px;border-radius:10px}
-input,textarea,select{width:100%;padding:12px;margin:8px 0 15px;box-sizing:border-box;border:1px solid #ccc;border-radius:6px}
-textarea{height:180px}
-button{background:#c62828;color:white;padding:14px;border:0;border-radius:6px;width:100%;font-size:16px}
+body{
+font-family:Arial;
+background:#f2f5fa;
+margin:0;
+padding:20px;
+color:#172033;
+}
+header{
+background:#102b55;
+color:white;
+padding:20px;
+border-radius:10px;
+}
+section{
+background:white;
+padding:20px;
+margin-top:20px;
+border-radius:10px;
+}
+input,textarea,select{
+width:100%;
+padding:12px;
+margin:8px 0 15px;
+box-sizing:border-box;
+border:1px solid #ccc;
+border-radius:6px;
+}
+textarea{height:150px}
+button{
+background:#c62828;
+color:white;
+padding:14px;
+border:0;
+border-radius:6px;
+width:100%;
+font-size:16px;
+}
 small{color:#555}
 </style>
 </head>
+
 <body>
+
 <header>
 <h2>MA-KAVOI PODCAST</h2>
-<p>Admin Dashboard – Article Publisher</p>
+<p>Admin Dashboard</p>
+<p>OUR CULTURE. OUR STORIES.</p>
 </header>
 
+<p><a href="index.html">← Back to MA-KAVOI Website</a></p>
+
+<section>
 <h3>Create a News Article</h3>
 
 <label>Article title</label>
@@ -34,44 +74,14 @@ small{color:#555}
 </select>
 
 <label>Article content</label>
-<textarea id="content" placeholder="Write your article here..."></textarea>
+<textarea id="content" placeholder="Write your article here"></textarea>
 
 <button onclick="downloadArticle()">Prepare Article File</button>
-
 <p id="message"></p>
-<small>This dashboard prepares an article JSON file for uploading to the GitHub articles folder. It does not publish directly from this page.</small>
+<small>Upload the prepared JSON file to GitHub articles folder to publish.</small>
+</section>
 
-<script>
-function downloadArticle(){
-const title=document.getElementById("title").value.trim();
-const content=document.getElementById("content").value.trim();
-const category=document.getElementById("category").value;
-
-if(!title || !content){
-document.getElementById("message").textContent="Please enter a title and article content.";
-return;
-}
-
-const article={
-title:title,
-date:new Date().toISOString().slice(0,10),
-category:category,
-content:content
-};
-
-const file=new Blob([JSON.stringify(article,null,2)],{type:"application/json"});
-const url=URL.createObjectURL(file);
-const link=document.createElement("a");
-link.href=url;
-link.download="article-"+Date.now()+".json";
-link.click();
-URL.revokeObjectURL(url);
-
-document.getElementById("message").textContent="Article file prepared. Upload it to the GitHub articles folder to publish.";
-}
-</script>
-</body>
-</html>{<hr>
+<section>
 <h3>Upload Podcast Episode</h3>
 
 <label>Episode title</label>
@@ -81,32 +91,71 @@ document.getElementById("message").textContent="Article file prepared. Upload it
 <textarea id="episodeDescription" placeholder="Describe this episode"></textarea>
 
 <label>Podcast audio link</label>
-<input id="audioLink" placeholder="Paste audio URL">
+<input id="audioLink" placeholder="Paste audio link">
 
 <button onclick="preparePodcast()">Prepare Podcast Episode</button>
-
 <p id="podcastMessage"></p>
+<small>Upload the prepared JSON file to GitHub to publish.</small>
+</section>
 
 <script>
+function downloadJSON(data, filename){
+const file = new Blob(
+[JSON.stringify(data,null,2)],
+{type:"application/json"}
+);
+const url = URL.createObjectURL(file);
+const link = document.createElement("a");
+link.href = url;
+link.download = filename;
+link.click();
+URL.revokeObjectURL(url);
+}
+
+function downloadArticle(){
+const title = document.getElementById("title").value.trim();
+const content = document.getElementById("content").value.trim();
+const category = document.getElementById("category").value;
+
+if(!title || !content){
+document.getElementById("message").textContent =
+"Please enter title and content.";
+return;
+}
+
+downloadJSON({
+title:title,
+date:new Date().toISOString().slice(0,10),
+category:category,
+content:content
+},"article-"+Date.now()+".json");
+
+document.getElementById("message").textContent =
+"Article file prepared.";
+}
+
 function preparePodcast(){
- const episode = {
-  title: document.getElementById("episodeTitle").value,
-  description: document.getElementById("episodeDescription").value,
-  audio: document.getElementById("audioLink").value
- };
+const title = document.getElementById("episodeTitle").value.trim();
+const description = document.getElementById("episodeDescription").value.trim();
+const audio = document.getElementById("audioLink").value.trim();
 
- const file = new Blob(
-  [JSON.stringify(episode,null,2)],
-  {type:"application/json"}
- );
+if(!title || !audio){
+document.getElementById("podcastMessage").textContent =
+"Enter episode title and audio link.";
+return;
+}
 
- const link = document.createElement("a");
- link.href = URL.createObjectURL(file);
- link.download = "podcast-episode.json";
- link.click();
+downloadJSON({
+title:title,
+description:description,
+audio:audio,
+date:new Date().toISOString().slice(0,10)
+},"podcast-episode.json");
 
- document.getElementById("podcastMessage").textContent =
- "Podcast file prepared. Upload it to GitHub to publish.";
+document.getElementById("podcastMessage").textContent =
+"Podcast episode file prepared.";
 }
 </script>
-  
+
+</body>
+</html>
