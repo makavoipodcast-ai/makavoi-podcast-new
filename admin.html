@@ -71,4 +71,42 @@ document.getElementById("message").textContent="Article file prepared. Upload it
 }
 </script>
 </body>
-</html>
+</html>{<hr>
+<h3>Upload Podcast Episode</h3>
+
+<label>Episode title</label>
+<input id="episodeTitle" placeholder="Enter episode title">
+
+<label>Podcast description</label>
+<textarea id="episodeDescription" placeholder="Describe this episode"></textarea>
+
+<label>Podcast audio link</label>
+<input id="audioLink" placeholder="Paste audio URL">
+
+<button onclick="preparePodcast()">Prepare Podcast Episode</button>
+
+<p id="podcastMessage"></p>
+
+<script>
+function preparePodcast(){
+ const episode = {
+  title: document.getElementById("episodeTitle").value,
+  description: document.getElementById("episodeDescription").value,
+  audio: document.getElementById("audioLink").value
+ };
+
+ const file = new Blob(
+  [JSON.stringify(episode,null,2)],
+  {type:"application/json"}
+ );
+
+ const link = document.createElement("a");
+ link.href = URL.createObjectURL(file);
+ link.download = "podcast-episode.json";
+ link.click();
+
+ document.getElementById("podcastMessage").textContent =
+ "Podcast file prepared. Upload it to GitHub to publish.";
+}
+</script>
+  
