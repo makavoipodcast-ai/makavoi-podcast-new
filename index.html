@@ -1,148 +1,131 @@
 
-<a href="news.html">NEWS</a><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MA-KAVOI PODCAST | African Stories & Culture</title>
+<meta name="description" content="MA-KAVOI PODCAST - Our Culture. Our Stories. African heritage, news and podcasts.">
+<title>MA-KAVOI PODCAST | Our Culture. Our Stories.</title>
 
 <style>
-* {
-  box-sizing: border-box;
-  scroll-behavior: smooth;
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+font-family:Arial,sans-serif;
+color:#172033;
+background:#f5f7fb;
+line-height:1.6;
 }
-
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  color: #172033;
-  line-height: 1.6;
+header{
+background:#092b58;
+color:white;
+padding:25px 6%;
 }
-
-header {
-  background: #092b63;
-  color: white;
-  text-align: center;
-  padding: 22px 10px;
+.brand{
+font-size:27px;
+font-weight:bold;
+letter-spacing:1px;
 }
-
-header h1 {
-  margin: 0;
-  font-size: 30px;
+.tagline{color:#e4eaf5}
+nav{
+background:#c62828;
+padding:14px 5%;
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:25px;
 }
-
-header p {
-  margin: 5px;
+nav a{
+color:white;
+text-decoration:none;
+font-weight:bold;
+font-size:14px;
 }
-
-nav {
-  background: #d62839;
-  padding: 14px 8px;
-  text-align: center;
+nav a:hover{color:#ffe082}
+.hero{
+background:linear-gradient(120deg,#092b58,#174b85);
+color:white;
+text-align:center;
+padding:90px 20px;
 }
-
-nav a {
-  color: white;
-  text-decoration: none;
-  margin: 8px;
-  font-weight: bold;
-  display: inline-block;
+.hero h1{
+font-size:clamp(30px,6vw,52px);
+margin-bottom:15px;
 }
-
-.hero {
-  background: linear-gradient(120deg,#092b63,#164b91);
-  color: white;
-  text-align: center;
-  padding: 75px 20px;
+.hero p{
+max-width:650px;
+margin:0 auto 25px;
+font-size:18px;
 }
-
-.hero h2 {
-  font-size: 38px;
-  color: white;
+.btn{
+display:inline-block;
+background:#c62828;
+color:white;
+padding:12px 23px;
+border-radius:5px;
+text-decoration:none;
+font-weight:bold;
+margin:5px;
 }
-
-.btn {
-  display: inline-block;
-  background: #d62839;
-  color: white;
-  padding: 12px 20px;
-  text-decoration: none;
-  border-radius: 5px;
-  margin: 8px;
-  font-weight: bold;
+.btn.secondary{background:white;color:#092b58}
+.container{
+max-width:1100px;
+margin:auto;
+padding:55px 20px;
 }
-
-section {
-  padding: 45px 20px;
-  text-align: center;
+.section-title{
+font-size:27px;
+color:#092b58;
+margin-bottom:10px;
 }
-
-section h2 {
-  color: #092b63;
+.intro{
+color:#64748b;
+margin-bottom:25px;
 }
-
-.cards {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 18px;
-  margin-top: 25px;
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+gap:20px;
 }
-
-.card {
-  background: #f2f5fa;
-  padding: 22px;
-  border-radius: 8px;
-  max-width: 300px;
-  flex: 1 1 230px;
+.card{
+background:white;
+border-radius:10px;
+padding:25px;
+box-shadow:0 3px 14px rgba(0,0,0,.06);
 }
-
-.card h3 {
-  color: #092b63;
+.card h3{color:#092b58;margin-bottom:10px}
+.card p{color:#64748b;margin-bottom:15px}
+.card a{
+color:#c62828;
+font-weight:bold;
+text-decoration:none;
 }
-
-.light {
-  background: #f2f5fa;
+.culture{
+background:#e9eff8;
 }
-
-.dark {
-  background: #092b63;
-  color: white;
+.about{
+background:white;
+text-align:center;
 }
-
-.dark h2 {
-  color: white;
+.contact{
+background:#092b58;
+color:white;
+text-align:center;
 }
-
-.news {
-  background: #d62839;
-  color: white;
-  padding: 12px;
-  font-weight: bold;
-  text-align: center;
+.contact h2{color:white}
+footer{
+background:#061b38;
+color:#dce5f2;
+text-align:center;
+padding:23px 15px;
+font-size:14px;
 }
-
-footer {
-  background: #061a3d;
-  color: white;
-  text-align: center;
-  padding: 25px 15px;
-}
-
-footer a {
-  color: white;
-  margin: 8px;
-}
-
-@media(max-width:600px) {
-  .hero h2 {
-    font-size: 28px;
-  }
-
-  nav a {
-    margin: 5px;
-    font-size: 13px;
-  }
+@media(max-width:600px){
+header{text-align:center}
+nav{gap:14px}
+nav a{font-size:12px}
+.hero{padding:65px 18px}
+.container{padding:40px 18px}
 }
 </style>
 </head>
@@ -150,160 +133,112 @@ footer a {
 <body>
 
 <header>
-<h1>MA-KAVOI PODCAST</h1>
-<p>OUR CULTURE. OUR STORIES.</p>
+<div class="brand">MA-KAVOI PODCAST</div>
+<div class="tagline">OUR CULTURE. OUR STORIES.</div>
 </header>
 
 <nav>
-<a href="#home">HOME</a>
-<a href="#news">NEWS</a>
-<a href="#podcast">PODCAST</a>
+<a href="index.html">HOME</a>
+<a href="news.html">NEWS</a>
+<a href="podcast.html">PODCAST</a>
 <a href="#culture">CULTURE</a>
 <a href="#about">ABOUT</a>
 <a href="#contact">CONTACT</a>
 </nav>
 
-<div class="news">
-WELCOME TO MA-KAVOI PODCAST
-</div>
-
-<div class="hero" id="home">
-<h2>YOUR VOICE. OUR STORIES. AFRICA.</h2>
-<p>Celebrating Our Culture. Preserving Our Heritage. Telling Our Stories.</p>
-<p>News, interviews, African stories and cultural conversations.</p>
-
-<a class="btn" href="https://www.youtube.com/@MAkavoiPodcast" target="_blank">
-WATCH OUR SHOWS
-</a>
-</div>
-
-<section id="news">
-<h2>LATEST NEWS</h2>
-<p>Stay connected with stories and developments from our communities and across Africa.</p>
-<p>Follow our social media platforms for updates.</p>
-<a class="btn" href="https://www.facebook.com/Makavoipodcast" target="_blank">
-FOLLOW OUR NEWS
-</a>
+<section class="hero">
+<h1>YOUR VOICE. OUR STORIES. AFRICA.</h1>
+<p>
+Celebrating African culture, preserving our heritage,
+sharing our stories and connecting communities.
+</p>
+<a class="btn" href="news.html">READ LATEST NEWS</a>
+<a class="btn secondary" href="podcast.html">EXPLORE PODCASTS</a>
 </section>
 
-<section class="light" id="podcast">
-<h2>MA-KAVOI PODCAST SHOWS</h2>
-<p>Watch our programmes, interviews and conversations.</p>
+<section class="container">
+<h2 class="section-title">Explore MA-KAVOI</h2>
+<p class="intro">Discover our latest content and programmes.</p>
 
 <div class="cards">
-<div class="card">
-<h3>Latest Episodes</h3>
-<p>Watch our latest podcast programmes.</p>
-<a href="https://www.youtube.com/@MAkavoiPodcast" target="_blank">Watch Episodes</a>
-</div>
 
 <div class="card">
-<h3>Interviews</h3>
-<p>Conversations with people making a difference.</p>
-<a href="https://www.youtube.com/@MAkavoiPodcast" target="_blank">Watch Interviews</a>
-</div>
-
-<div class="card">
-<h3>Subscribe</h3>
-<p>Join our YouTube community and never miss a show.</p>
-<a href="https://www.youtube.com/@MAkavoiPodcast" target="_blank">Subscribe</a>
-</div>
-</div>
-</section>
-
-<section id="culture">
-<h2>AFRICAN CULTURE & HERITAGE</h2>
-
-<div class="cards">
-<div class="card">
-<h3>Kamba Heritage</h3>
-<p>Discover Kamba traditions, language and history.</p>
-</div>
-
-<div class="card">
-<h3>African Stories</h3>
-<p>Explore African history, people and traditions.</p>
-</div>
-
-<div class="card">
-<h3>Community Voices</h3>
-<p>Real experiences and conversations from our communities.</p>
-</div>
-</div>
-</section>
-
-<section class="light" id="programmes">
-<h2>OUR PROGRAMMES</h2>
-
-<div class="cards">
-<div class="card">
-<h3>African Stories</h3>
-<p>Discover African history and inspiring stories.</p>
-</div>
-
-<div class="card">
-<h3>Kamba Culture</h3>
-<p>Explore our heritage and traditions.</p>
-</div>
-
-<div class="card">
-<h3>News & Interviews</h3>
-<p>Stay informed through discussions and interviews.</p>
+<h3>Latest News</h3>
+<p>Stay informed with community news, African affairs and important stories.</p>
+<a href="news.html">Read News →</a>
 </div>
 
 <div class="card">
 <h3>Podcast Shows</h3>
-<p>Enjoy our latest digital media programmes.</p>
+<p>Listen to conversations, interviews, discussions and inspiring stories.</p>
+<a href="podcast.html">Listen Now →</a>
 </div>
+
+<div class="card">
+<h3>Culture & Heritage</h3>
+<p>Explore Kamba traditions, language, history and African heritage.</p>
+<a href="#culture">Discover More →</a>
+</div>
+
+<div class="card">
+<h3>Community Stories</h3>
+<p>Celebrating people, achievements and stories from our communities.</p>
+<a href="news.html">Explore Stories →</a>
+</div>
+
 </div>
 </section>
 
-<section id="about">
-<h2>ABOUT MA-KAVOI PODCAST</h2>
-<p>
-MA-KAVOI PODCAST is a digital media platform dedicated to sharing news,
-African stories, Kamba culture, interviews and inspiring conversations.
+<section class="culture" id="culture">
+<div class="container">
+<h2 class="section-title">Our Culture. Our Heritage.</h2>
+<p class="intro">
+We are committed to preserving African identity and sharing
+the traditions, languages, history and wisdom of our communities.
 </p>
-<p>
-Our mission is to inform, educate, entertain and preserve African heritage
-for future generations.
-</p>
-</section>
-
-<section class="light" id="advertise">
-<h2>ADVERTISE WITH US</h2>
-<p>Promote your business, products, services and events through MA-KAVOI PODCAST.</p>
-
 <div class="cards">
-<div class="card"><h3>Business Advertising</h3><p>Promote your business to our audience.</p></div>
-<div class="card"><h3>Event Promotion</h3><p>Advertise your events and activities.</p></div>
-<div class="card"><h3>Brand Partnerships</h3><p>Partner with our growing media platform.</p></div>
+<div class="card">
+<h3>Kamba Heritage</h3>
+<p>Discover the history, traditions, language and identity of the Kamba people.</p>
 </div>
-
-<a class="btn" href="https://wa.me/254741139063" target="_blank">
-ADVERTISE WITH US
-</a>
+<div class="card">
+<h3>African Stories</h3>
+<p>Discover the rich history, cultures and stories of African communities.</p>
+</div>
+<div class="card">
+<h3>Our Traditions</h3>
+<p>Preserving traditional knowledge and passing our heritage to future generations.</p>
+</div>
+</div>
+</div>
 </section>
 
-<section class="dark" id="contact">
-<h2>CONNECT WITH MA-KAVOI PODCAST</h2>
-<p>Follow us and become part of our community.</p>
+<section class="container about" id="about">
+<h2 class="section-title">About MA-KAVOI PODCAST</h2>
+<p>
+MA-KAVOI PODCAST is a media platform dedicated to African
+culture, heritage, community stories, news and conversations.
+</p>
+<p>
+Our mission is to inform, educate, entertain and preserve
+our cultural identity for future generations.
+</p>
+</section>
 
-<a class="btn" href="https://www.facebook.com/Makavoipodcast" target="_blank">FACEBOOK</a>
-
-<a class="btn" href="https://www.youtube.com/@MAkavoiPodcast" target="_blank">YOUTUBE</a>
-
-<a class="btn" href="https://wa.me/254741139063" target="_blank">WHATSAPP US</a>
-
-<p>Contact: +254741139063</p>
+<section class="contact" id="contact">
+<div class="container">
+<h2>Connect With MA-KAVOI</h2>
+<p>Have a story, announcement, partnership or advertising enquiry?</p>
+<p>Get in touch and become part of our growing community.</p>
+<a class="btn secondary" href="news.html">Share Your Story</a>
+</div>
 </section>
 
 <footer>
-<h3>MA-KAVOI PODCAST</h3>
+<p><strong>MA-KAVOI PODCAST</strong></p>
 <p>OUR CULTURE. OUR STORIES.</p>
-<p>News | Interviews | African Stories | Kamba Culture</p>
 <p>© 2026 MA-KAVOI PODCAST. All Rights Reserved.</p>
 </footer>
-<a href="podcast.html">PODCAST</a>
+
 </body>
 </html>
